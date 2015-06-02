@@ -1,0 +1,18 @@
+.box {
+  position: absolute;
+  top: 300px;
+  left: 0;
+  right: 0;
+  width: 400px;
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  padding: 20px;
+  height: 300px; }
+
+.form-wrapper {
+  text-align: right; }
+
+.value-wrapper {
+  text-align: center; }
+
+/*# sourceMappingURL=style.css.map */
