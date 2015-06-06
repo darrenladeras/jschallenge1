@@ -13,21 +13,30 @@
   position: relative
 
 #form-wrapper
-  text-align: right
+  text-align: center
 
 #value-wrapper
   text-align: center
   position: absolute
   left: 0
   right: 0
-  top: 130px
+  top: 95px
 
-  #inserted-value
+  .inserted-value
     border: 1px solid #ccc
-    border-radius: 120px
-    padding: 40px
+    border-radius: 190px
+    padding: 50px 40px
+    width: 10%
+    margin: auto
+    cursor: pointer
+
+    &:hover
+      border-color: red
+      color: red
 
   .factors
+    margin: 0 auto
+
     ul
       margin: 0
       padding: 0
@@ -35,3 +44,4 @@
       li
         float: left
         list-style-type: none
+        margin-right: 10px
