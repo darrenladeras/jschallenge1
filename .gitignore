@@ -36,3 +36,5 @@
 ehthumbs.db
 Thumbs.db
 *.css
+.sass-cache/
+style.css.map
