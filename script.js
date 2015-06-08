@@ -4,8 +4,9 @@
     var valueWrapper = document.getElementById( 'value-wrapper' );
     var form = document.getElementById('form-wrapper');
     var insertedValue = document.createElement('div');
-    // console.log(form.children[1]);
 
+
+    // Submit Value
     form.addEventListener( 'submit', function(e) {
         e.preventDefault();
         console.log(e.type);
@@ -32,36 +33,47 @@
         }
     }, false);
 
-    var ul = document.createElement('ul');
-    var factors = document.createElement('div');
-    ul.id = 'list-of-factors';
 
-    valueWrapper.appendChild(factors);
-    factors.className = 'factors';
-
-// function getRandomArbitrary(min, max) {
-//   return Math.random() * (max - min) + min;
-// }
-
-    var factorization = function (value, factor) {
-        return value - factor;
-    };
-
-    console.log(factorization(190, 10));
-
+    // Displaying the factors of the inserted Value
     insertedValue.addEventListener( 'click', function() {
-        var list = document.getElementById('list-of-factors');
+        var getInsertedValue = insertedValue.innerHTML.replace(/\W/g, ' ');
+        var split = getInsertedValue / 10;
 
-        var getFactors = [];
+        // console.log(insertedValue.innerHTML);
+        // console.log(getInsertedValue);
+        // console.log(generatedValue);
 
-        for ( var i = 10; i < 200 + 10; i+=10 ) {
-            li = document.createElement('li');
-            getFactors.push(i)
-            li.innerHTML = '$' + i;;
-            ul.appendChild(li);
-            factors.appendChild(ul);
+        if ( split < 2 ) {
+            // alert('There\'s NOTHING to do to make a Factorization if you\'re skip counting by' + ' ' + getInsertedValue);
+        } else {
+            // alert('The inserted Value is' + '' + getInsertedValue + ' ' + 'and it can be divided into' + ' ' + split + '.');
+
+            // Generated Value (incremented by 10)
+            var list = document.getElementById('list-of-factors');
+
+            var getFactors = [];
+
+            for ( var i = 10; i < 200 + 10; i+=10 ) {
+                getFactors.push(i)
+            }
+
+            getFactors.length = split;
+            console.log(getFactors);
+
+            var listOfFactors = document.createElement('ul');
+            var factors = document.createElement('div');
+            // var li = document.createElement('li');
+            listOfFactors.id = 'list-of-factors';
+
+            factors.appendChild(listOfFactors);
+            valueWrapper.appendChild(factors);
+            factors.className = 'factors';
+
+            for ( var i = 0; i < getFactors.length; i++ ) {
+                var li = document.createElement('li');
+                li.innerHTML = getFactors[i];
+                listOfFactors.appendChild(li);
+            }
         }
-
-        console.log(getFactors);
     }, false);
 })(window, document);
