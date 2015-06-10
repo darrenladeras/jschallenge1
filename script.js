@@ -6,13 +6,16 @@
     var insertedValue = document.createElement('div');
 
 
-    // Submit Value
+    // Displaying the inserted value
     form.addEventListener( 'submit', function(e) {
         e.preventDefault();
-        console.log(e.type);
 
         // Convertion of inputed string to integer
         var inputText = parseInt( textValue.value, 10 );
+
+        if ( text.value === '' ) {
+            alert( '"NO INPUT DETECTED", Put a Value between 1 to 200' );
+        }
 
         if ( inputText <= 0 ) {
             alert( 'The Min Value is 1' );
@@ -27,10 +30,6 @@
         if ( textValue.value >= 201 ) {
             alert( 'The Max Value is 200' );
         }
-
-        if ( text.value === '' ) {
-            alert( '"NO INPUT DETECTED", Put a Value between 1 to 200' );
-        }
     }, false);
 
 
@@ -39,10 +38,6 @@
         var getInsertedValue = insertedValue.innerHTML.replace(/\W/g, ' ');
         var split = getInsertedValue / 10;
 
-        // console.log(insertedValue.innerHTML);
-        // console.log(getInsertedValue);
-        // console.log(generatedValue);
-
         if ( split < 2 ) {
             // alert('There\'s NOTHING to do to make a Factorization if you\'re skip counting by' + ' ' + getInsertedValue);
         } else {
@@ -50,6 +45,7 @@
 
             // Generated Value (incremented by 10)
             var list = document.getElementById('list-of-factors');
+
 
             var getFactors = [];
 
@@ -60,20 +56,36 @@
             getFactors.length = split;
             console.log(getFactors);
 
-            var listOfFactors = document.createElement('ul');
             var factors = document.createElement('div');
-            // var li = document.createElement('li');
-            listOfFactors.id = 'list-of-factors';
 
-            factors.appendChild(listOfFactors);
             valueWrapper.appendChild(factors);
-            factors.className = 'factors';
+            factors.className = 'list-of-factors';
 
-            for ( var i = 0; i < getFactors.length; i++ ) {
-                var li = document.createElement('li');
-                li.innerHTML = getFactors[i];
-                listOfFactors.appendChild(li);
+            var theta = [];
+
+            var setup = function (item, radius) {
+                for ( var i = 0; i < getFactors.length; i++ ) {
+                    var listOfFactors = document.createElement('div');
+                    listOfFactors.className = 'item';
+                    listOfFactors.innerHTML = '$' + getFactors[i];
+                    factors.appendChild(listOfFactors);
+
+                    var x = (radius * (Math.cos(theta[i])));
+                    var y = (radius * (Math.sin(theta[i])));
+
+                    listOfFactors.style.top = ((300 / 2) - parseInt(x)) + 'px';
+                    listOfFactors.style.left = ((300 / 2 ) + parseInt(y)) + 'px';
+                }
+            };
+
+            var generate = function(item, radius) {
+                var frags = 360 / item;
+                for (var i = 0; i <= item; i++) {
+                    theta.push((frags / 180) * i * Math.PI);
+                }
+                setup(item, radius)
             }
+            generate(getFactors.length, 150);
         }
     }, false);
 })(window, document);
