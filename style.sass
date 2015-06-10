@@ -1,16 +1,34 @@
+@mixin border-radius($radius)
+  -webkit-border-radius: $radius
+  -moz-border-radius: $radius
+  -ms-border-radius: $radius
+  border-radius: $radius
+
+@mixin justify-content($alignment)
+  justify-content: $alignment
+  -webkit-justify-content: $alignment
+
+@mixin align-items($alignment)
+  align-items: $alignment
+  -webkit-align-items: $alignment
+  -ms-flex-pack: $alignment
+  -ms-flex-align: $alignment
+
 .box
   position: absolute
   top: 50px
   left: 0
   right: 0
-  width: 400px
+  width: 800px
+  height: 600px
   border: 1px solid #ccc
   margin: 0 auto
   padding: 20px
-  height: 300px
 
 .inner-content-box
   position: relative
+  height: 100%
+  width: 100%
 
 #form-wrapper
   text-align: center
@@ -20,27 +38,52 @@
   position: absolute
   left: 0
   right: 0
-  top: 95px
+  top: 150px
+  width: 300px
+  height: 300px
+  margin: 0 auto
 
   .inserted-value
-    border: 1px solid #ccc
-    border-radius: 190px
-    padding: 50px 40px
-    width: 10%
+    width: 300px
+    height: 300px
     margin: auto
+    color: #FFF
     cursor: pointer
+    font-size: 3.5em
+    background-color: #333
+
+    display: -webkit-box
+    display: -moz-box
+    display: -ms-flexbox
+    display: -moz-flex
+    display: -webkit-flex
+    display: flex
+
+    @include border-radius(190px)
+    @include justify-content(center)
+    @include align-items(center)
 
     &:hover
-      border-color: red
-      color: red
+      color: #ddc125
 
-  .factors
+  .list-of-factors
     margin: 0 auto
 
-    ul
-      margin: 0
-      padding: 0
+    .item
+      position: absolute
+      list-style-type: none
+      background-color: #E7E7E7
+      border: 2px solid #ccc
+      width: 50px
+      height: 50px
 
-      li
-        float: left
-        list-style-type: none
+      display: -webkit-box
+      display: -moz-box
+      display: -ms-flexbox
+      display: -moz-flex
+      display: -webkit-flex
+      display: flex
+
+      @include border-radius(50px)
+      @include justify-content(center)
+      @include align-items(center)
