@@ -8,19 +8,27 @@
 
     // Displaying the inserted value
     form.addEventListener( 'submit', function(e) {
-        e.preventDefault();
-
-        // Convertion of inputed string to integer
-        var inputText = parseInt( textValue.value, 10 );
-
         if ( text.value === '' ) {
             alert( '"NO INPUT DETECTED", Put a Value between 1 to 200' );
         }
 
+        // Matches the letters of the Alphabet
+        var alphaExp = /^[a-zA-Z]+$/;
+
+        // Letters that are inpuet are forbidden
+        if ( text.value.match(alphaExp) ) {
+            alert( 'Letters are not valid' );
+        }
+
+        // Convertion of inputed numeric string value to integer
+        var inputText = parseInt( textValue.value, 10 );
+
+        // Numeric Values that are less than zero are forbidden
         if ( inputText <= 0 ) {
             alert( 'The Min Value is 1' );
         }
 
+        // All Numeric Values between 1 - 200 
         if ( textValue.value > 0 && textValue.value <= 200 ) {
             valueWrapper.appendChild(insertedValue);
             insertedValue.className = 'inserted-value';
@@ -30,6 +38,8 @@
         if ( textValue.value >= 201 ) {
             alert( 'The Max Value is 200' );
         }
+
+        e.preventDefault();
     }, false);
 
 
@@ -39,9 +49,9 @@
         var split = getInsertedValue / 10;
 
         if ( split < 2 ) {
-            // alert('There\'s NOTHING to do to make a Factorization if you\'re skip counting by' + ' ' + getInsertedValue);
+            alert('There\'s NOTHING to do to make a Factorization if you\'re skip counting by' + ' ' + getInsertedValue);
         } else {
-            // alert('The inserted Value is' + '' + getInsertedValue + ' ' + 'and it can be divided into' + ' ' + split + '.');
+            alert('The inserted Value is' + '' + getInsertedValue + ' ' + 'and it can be divided into' + ' ' + split + '.');
 
             // Generated Value (incremented by 10)
             var list = document.getElementById('list-of-factors');
